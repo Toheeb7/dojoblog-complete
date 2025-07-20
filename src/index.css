@@ -1,0 +1,165 @@
+/* index.css */
+
+/* Light Theme (default) */
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #333;
+  --card-bg: #fff;
+  --primary: #6200ea;
+  --primary-dark: #4500b5;
+  --link-color: white;
+}
+
+/* Dark Theme Overrides */
+body.dark {
+  --bg-color: #1c1c1c;
+  --text-color: #f5f5f5;
+  --card-bg: #2a2a2a;
+  --primary: #bb86fc;
+  --primary-dark: #985eff;
+  --link-color: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.navbar {
+  padding: 16px 32px;
+  background: var(--primary);
+  color: var(--link-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.navbar h1 {
+  font-size: 24px;
+}
+
+.navbar .links a {
+  color: var(--link-color);
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar .links a:hover {
+  text-decoration: underline;
+}
+
+.toggle-mode {
+  background: none;
+  border: 2px solid white;
+  color: white;
+  padding: 4px 12px;
+  margin-left: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.content {
+  max-width: 800px;
+  margin: auto;
+}
+
+.blog-preview {
+  background: var(--card-bg);
+  color: var(--text-color);
+  padding: 16px;
+  margin: 20px 0;
+  border-bottom: 1px solid #ddd;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+}
+
+.blog-preview:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.blog-preview h2 {
+  color: var(--primary);
+}
+
+.blog-preview a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.create,
+.blog-details {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.create label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.create input,
+.create textarea,
+.create select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+}
+
+body.dark .create input,
+body.dark .create textarea,
+body.dark .create select {
+  background-color: #444;
+  color: white;
+  border: 1px solid #666;
+}
+
+.create button {
+  margin-top: 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.create button:hover {
+  background: var(--primary-dark);
+}
+
+.not-found {
+  text-align: center;
+  padding: 50px;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar .links {
+    margin-top: 10px;
+  }
+}
