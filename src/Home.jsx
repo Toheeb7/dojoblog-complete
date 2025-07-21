@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import BlogList from "./BlogList";
 
 const Home = () => {
-  const [blogs, setBlogs] = useState(null);
+  const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/blogs")
-      .then((res) => res.json())
-      .then((data) => setBlogs(data));
+    const stored = localStorage.getItem("blogs");
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        setBlogs(Array.isArray(parsed) ? parsed : []);
+      } catch (error) {
+        console.error("Error parsing blogs from localStorage", error);
+        setBlogs([]);
+      }
+    } else {
+      setBlogs([]);
+    }
   }, []);
 
   return (
     <div className="home">
-      <h2>All Blogs</h2>
-      {blogs &&
-        blogs.map((blog) => (
-          <div className="blog-preview" key={blog.id}>
-            <Link to={`/blogs/${blog.id}`}>
-              <h2>{blog.title}</h2>
-              <p>Written by {blog.author}</p>
-            </Link>
-          </div>
-        ))}
+      {blogs.length === 0 ? (
+        <p>No blogs available.</p>
+      ) : (
+        <BlogList blogs={blogs} title="All Blogs" />
+      )}
     </div>
   );
 };
