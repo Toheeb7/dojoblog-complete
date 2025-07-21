@@ -1,26 +1,25 @@
-import { useParams, useNavigate } from "react-router-dom";
+// src/BlogDetails.jsx
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const BlogDetails = ({ blogs, setBlogs }) => {
+const BlogDetails = () => {
   const { id } = useParams();
-  const blog = blogs.find(b => b.id === parseInt(id));
-  const navigate = useNavigate();
+  const [blog, setBlog] = useState(null);
 
-  const handleDelete = () => {
-    const updatedBlogs = blogs.filter(b => b.id !== blog.id);
-    setBlogs(updatedBlogs);
-    localStorage.setItem("blogs", JSON.stringify(updatedBlogs));
-    navigate("/");
-  };
+  useEffect(() => {
+    const storedBlogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    const foundBlog = storedBlogs.find((b) => b.id.toString() === id);
+    setBlog(foundBlog);
+  }, [id]);
 
   return (
     <div className="blog-details">
       {blog ? (
-        <>
+        <article>
           <h2>{blog.title}</h2>
-          <p>Written by {blog.author}</p>
+          <p><strong>Written by:</strong> {blog.author}</p>
           <div>{blog.body}</div>
-          <button onClick={handleDelete}>Delete</button>
-        </>
+        </article>
       ) : (
         <div>Blog not found</div>
       )}
