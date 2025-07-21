@@ -17,7 +17,7 @@ const BlogDetails = () => {
       {blog ? (
         <article>
           <h2>{blog.title}</h2>
-          <p><strong>Written by:</strong> {blog.author}</p>
+          <p><strong>Written by:</strong> Bello Toheeb</p>
           <div>{blog.body}</div>
         </article>
       ) : (
